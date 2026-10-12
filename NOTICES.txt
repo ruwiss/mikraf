@@ -1,0 +1,19 @@
+Mikraf ses zinciri, OBS Studio 32.2.1 obs-filters eklentisindeki genel formüllerden
+C# ile yeniden yazıldı. OBS Studio GPL-2.0-or-later ile lisanslıdır:
+https://github.com/obsproject/obs-studio
+
+Bu depoda OBS kaynak kodu yoktur. Filtre matematiği gözlem ve kamuya açık
+32.2.1 kaynaklarıyla karşılaştırılarak yazıldı; bit düzeyinde aynı çalıştığı
+iddia edilmez.
+
+mikraf-speex.dll, Xiph.Org SpeexDSP (BSD benzeri) ön işlemcisini içerir:
+https://github.com/xiph/speexdsp
+
+mikraf-rnnoise.dll, OBS Studio 32.2.1 ağacıyla gelen RNNoise (BSD) kopyasını içerir.
+Ağırlıklar o sürümün plugins/obs-filters/rnnoise kaynağındandır.
+https://github.com/xiph/rnnoise
+
+VST 2 ve NVIDIA Audio Effects bu uygulamada yoktur.
+
+mikraf-apo.dll aynı zinciri yerel kodda yeniden yazar ve SpeexDLL’ini çağırır.
+Windows yakalama APO’su olarak yalnızca seçilen mikrofona kaydolur.

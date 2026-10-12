@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Mikraf</RootNamespace>
+    <AssemblyName>Mikraf</AssemblyName>
+    <ApplicationIcon>assets\mikraf.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <Company>Mikraf</Company>
+    <Product>Mikraf</Product>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="native\bin\*.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" Link="%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>
