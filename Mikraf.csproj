@@ -8,7 +8,7 @@
     <RootNamespace>Mikraf</RootNamespace>
     <AssemblyName>Mikraf</AssemblyName>
     <ApplicationIcon>assets\mikraf.ico</ApplicationIcon>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Company>Mikraf</Company>
     <Product>Mikraf</Product>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>

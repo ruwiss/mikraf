@@ -1840,6 +1840,24 @@ static void DetachVoiceClarity(const wchar_t *guid)
     }
 }
 
+// Killing audiodg alone leaves a fresh install unloaded until the audio services restart.
+static void RestartAudioServices(const wchar_t *system)
+{
+    wchar_t command[MAX_PATH + 160];
+    STARTUPINFOW startup;
+    PROCESS_INFORMATION info;
+    StringCchPrintfW(command, MAX_PATH + 160, L"%s\cmd.exe /c \"net stop audiosrv /y & net stop AudioEndpointBuilder /y & net start AudioEndpointBuilder & net start audiosrv\"", system);
+    ZeroMemory(&startup, sizeof(startup));
+    startup.cb = sizeof(startup);
+    ZeroMemory(&info, sizeof(info));
+    if (CreateProcessW(NULL, command, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &startup, &info)) {
+        WaitForSingleObject(info.hProcess, 30000);
+        CloseHandle(info.hThread);
+        CloseHandle(info.hProcess);
+        LogLine(L"audio services restarted");
+    }
+}
+
 static void RecycleAudioEngine()
 {
     wchar_t system[MAX_PATH];
@@ -1856,6 +1874,7 @@ static void RecycleAudioEngine()
         CloseHandle(info.hThread);
         CloseHandle(info.hProcess);
         LogLine(L"audiodg recycled");
+        RestartAudioServices(system);
     } else {
         LogLine(L"audiodg recycle failed");
     }
